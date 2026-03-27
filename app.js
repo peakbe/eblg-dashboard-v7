@@ -253,8 +253,8 @@ function updateFlightsUI(f) {
 
 function limitNextFlights(list) {
   return list
-    .filter(f => f.scheduled)
-    .sort((a, b) => new Date(a.scheduled) - new Date(b.scheduled))
+    .filter(f => f.sTx || f.eTx) // on garde les vols qui ont une heure
+    .sort((a, b) => new Date(a.eTx || a.sTx) - new Date(b.eTx || b.sTx))
     .slice(0, 10);
 }
 
